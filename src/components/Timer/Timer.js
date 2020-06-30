@@ -8,28 +8,26 @@ import FocusTimer from "./FocusTimer";
 import ButtonControl from "./ButtonControl/ButtonControl";
 
 const Timer = (props) => {
-  const { ct } = props;
-  let count, mins, secs, min, sec;
+  const { fcs } = props;
+  let min, sec;
 
-  count = ct * 60;
-  let [timer, setTimer] = useState(count);
+  let [counter, setCounter] = useState(fcs * 60);
 
   const handleTime = () => {
-    timer = count / 60;
     setInterval(() => {
-      setTimer({ timer: timer - 1 });
+      setCounter((pS) => pS - 1);
     }, 1000);
-  }; //countdown play btn
+  }; //handles start counter
+
+  const handleStop = () => {};
 
   const clockify = () => {
-    mins = Math.floor(timer / 60);
-    secs = timer - mins * 60;
+    let mins = Math.floor(counter / 60);
+    let secs = counter - mins * 60;
     min = mins < 10 ? "0" + mins : mins;
     sec = secs < 10 ? "0" + secs : secs;
-    console.log(min);
-    console.log(sec);
     return min + " : " + sec;
-  }; //display countdown handle
+  }; //displays timer
 
   return (
     <div>
@@ -43,7 +41,7 @@ const Timer = (props) => {
           <h1>{clockify()}</h1>
         </div>
         <div className="btnControl">
-          <ButtonControl startTime={handleTime} />
+          <ButtonControl startTime={handleTime} stop={handleStop} />
         </div>
       </div>
     </div>
@@ -52,7 +50,6 @@ const Timer = (props) => {
 const mapStateToProps = (state) => {
   return {
     fcs: state.fcsTimer,
-    ct: state.counter,
   };
 };
 export default connect(mapStateToProps)(Timer);

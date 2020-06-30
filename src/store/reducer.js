@@ -3,7 +3,6 @@ import * as actionType from "./actions";
 const initialState = {
   rstTimer: 5,
   fcsTimer: 25,
-  counter: 25,
 };
 
 const pomo = (state = initialState, action) => {
@@ -23,15 +22,15 @@ const pomo = (state = initialState, action) => {
       return {
         ...state,
         fcsTimer: state.fcsTimer + 1,
-        counter: state.fcsTimer + 1,
+        // counter: state.fcsTimer + 1,
       };
     case actionType.FOCUS_MINUS:
       return {
         ...state,
         fcsTimer:
           state.fcsTimer <= 1 ? (state.fcsTimer = 1) : state.fcsTimer - 1,
-        counter:
-          state.fcsTimer <= 1 ? (state.fcsTimer = 1) : state.fcsTimer - 1,
+        // counter:
+        //   state.fcsTimer <= 1 ? (state.fcsTimer = 1) : state.fcsTimer - 1,
       };
 
     default:

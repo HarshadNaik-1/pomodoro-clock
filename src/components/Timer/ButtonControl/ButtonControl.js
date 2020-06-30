@@ -10,7 +10,7 @@ const ButtonControl = (props) => {
         {" "}
         <PlayArrow />
       </button>
-      <button>
+      <button onClick={props.stop}>
         {" "}
         <Stop />
       </button>
